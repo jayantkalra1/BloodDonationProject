@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+
+<head>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+
+    <style>
+        .qr-code {
+            max-width: 200px;
+            margin: 10px;
+        }
+
+        .footerqr {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+
+    <title>QR Code Available units Status</title>
+</head>
+
+<body>
+    {% include "blood/navbar.html" %}
+
+    <br><br><br><br>
+    <div>
+        <div class="jumbotron" style="margin-top: 0px;margin-bottom: 0px;">
+            <p class="lead text-center">“Scan the QR Code for Checking the available Blood Unit Status”</p>
+        </div>
+
+        <br><br><br>
+        <div class="text-center">
+            <img src="" class="qr-code img-thumbnail img-responsive" alt="QR not available at Moment" />
+        </div>
+
+    </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+    <script>
+        // Function to HTML encode the text
+        // This creates a new hidden element,
+        // inserts the given text into it
+        // and outputs it out as HTML
+        function htmlEncode(value) {
+            return $('<div/>').text(value)
+                .html();
+        }
+
+        $(function () {
+
+            $(document).ready(function () {
+                // Generate the link that would be
+                // used to generate the QR Code
+                // with the given data
+                var data = JSON.parse("{{data|escapejs}}");
+                JSON.stringify(data);
+
+                console.log(JSON.stringify(data));
+                let finalURL =
+                    'https://chart.googleapis.com/chart?cht=qr&chl=' +
+                    htmlEncode(JSON.stringify(data)) +
+                    '&chs=160x160&chld=L|0';
+
+                // Replace the src of the image with
+                // the QR code image
+                $('.qr-code').attr('src', finalURL);
+
+            });
+        });
+
+
+    </script>
+    <div class="footerqr" >
+        {% include "blood/footerTemplate.html" %}
+    </div>
+    
+</body>
+
+</html>

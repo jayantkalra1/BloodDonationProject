@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Location</title>
+<style>
+	/* The sidebar menu */
+.sidebar {
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0;
+  left: 0;
+  background-color: #1f4965; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+}
+
+/* The sidebar links */
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #dbeaea;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+/* The button used to open the sidebar */
+.openbtn {
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #00a2ff;
+  color: white;
+  padding: 9px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+  transition: margin-left .5s; /* If you want a transition effect */
+  padding: 20px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+  .sidebar button {font-size: 18px;}
+}
+</style>
+</head>
+
+<body>
+	<div id="mySidebar" class="sidebar">
+		<br><br>
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		<a href="/aboutUs">About Us</a>
+		<a href="/patient/patientlogin">Patient Services</a>
+		<a href="/donor/donorlogin">Donor Services</a>
+		<a href="/qrUpdates">Available Units</a>
+		<a href="#" type="button" onclick="getlocation();">Contact Us</a>
+		<br><br><br><br><br><br>
+		<div id="demo2" style="width: 250px; height: 240px"></div>
+	  </div>
+	  
+		<button class="openbtn" onclick="openNav()">&#9776; Services</button>
+	 
+
+<script type="text/javascript">
+	/* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
+function openNav() {
+  document.getElementById("mySidebar").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+/* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft = "0";
+}
+</script>
+
+<script src=
+"https://maps.google.com/maps/api/js?sensor=false">
+</script>
+<script type="text/javascript">
+	function getlocation() {
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(showLoc, errHand);
+	}
+	}
+	function showLoc(pos) {
+	latt = 28.367180;
+	long = 79.430153;
+	var lattlong = new google.maps.LatLng(latt, long);
+	var OPTions = {
+		center: lattlong,
+		zoom: 10,
+		mapTypeControl: true,
+		navigationControlOptions: {
+		style: google.maps.NavigationControlStyle.SMALL,
+		},
+	};
+	var mapg = new google.maps.Map(
+		document.getElementById("demo2"),
+		OPTions
+	);
+	var markerg = new google.maps.Marker({
+		position: lattlong,
+		map: mapg,
+		title: "You are here!",
+	});
+	}
+
+	function errHand(err) {
+	switch (err.code) {
+		case err.PERMISSION_DENIED:
+		result.innerHTML =
+			"The application doesn't have the permission" +
+			"to make use of location services";
+		break;
+		case err.POSITION_UNAVAILABLE:
+		result.innerHTML = "The location of the device is uncertain";
+		break;
+		case err.TIMEOUT:
+		result.innerHTML = "The request to get user location timed out";
+		break;
+		case err.UNKNOWN_ERROR:
+		result.innerHTML =
+			"Time to fetch location information exceeded" +
+			"the maximum timeout interval";
+		break;
+	}
+	}
+</script>
+</body>
+
+</html>

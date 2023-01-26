@@ -1,0 +1,149 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+        }
+
+        html {
+            box-sizing: border-box;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+
+        .column {
+            float: left;
+            width: 33.3%;
+            margin-bottom: 16px;
+            padding: 0 8px;
+        }
+
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            margin: 8px;
+        }
+
+        .about-section {
+            padding: 50px;
+            text-align: center;
+            background-color: #474e5d;
+            color: white;
+        }
+
+        .container {
+            padding: 0 16px;
+        }
+
+        .container::after,
+        .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        .title {
+            color: grey;
+        }
+
+        .button {
+            border: none;
+            outline: 0;
+            display: inline-block;
+            padding: 8px;
+            color: white;
+            background-color: #000;
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .button:hover {
+            background-color: #555;
+        }
+
+        @media screen and (max-width: 650px) {
+            .column {
+                width: 100%;
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    {% include "blood/navbar.html" %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="about-section">
+        <h1>About Us Page</h1>
+        <br>
+        <p>Blood donation and transfusion service is an indispensable part of contemporary medicine and health care. Blood management has been recognized as a challenging task because of life threatening nature of blood products entails the punctilious administration due to its perishable nature & required timely processing and it also saves the life.</p>
+        <br>
+        <p>Such great challenge has been considerably alleviated with the development of information and computer technology.It also provides online status of blood group wise availability of blood units in all the licensed blood banks in the state. It includes online tracking and trailing system of the blood and blood products (components of blood) by the state level administrators. The system manages all the activities from blood collection both from camps & hospitals till the issue of blood units. It includes donor screening, blood collection, storage and issue of the unit</p>
+    </div>
+    
+    <br>
+    <br>
+
+    <h2 style="text-align:center">Our Successful Donors Testimony</h2>
+    <br>
+    <div class="row">
+        <div class="column">
+            <div class="card">
+                <img src= "static\image\team1.jpg" alt="Jane" style="width:100%">
+                <div class="container">
+                    <h2>Mr & Mrs. Rampal</h2>
+                    <p class="title">CEO & Founder</p>                  
+                    <p>I love people! I’m the kind of person who drops everything for people in need, and donating blood every chance I get is my favorite way to help others. It’s simple, it doesn’t cause me any inconvenience, and I have a sure way of knowing that my donation makes a difference.</p>
+                    <p>Rampal@example.com</p>
+                    <p><button class="button">Contact</button></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="card">
+                <img src= "static\image\team2.jpg" alt="Mike" style="width:100%">
+                <div class="container">
+                    <h2>Arjun Kapur</h2>
+                    <p class="title">Art Director</p>
+                    <br>
+                    <p>A friend of mine donated more than 55 gallons of blood in his lifetime and challenged his friends to help. I am answering his challenge to help others.</p>                   
+                    <br>
+                    <p>Arjun.Kapur@example.com</p>
+                    <p><button class="button">Contact</button></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="card">
+                <img src= "static\image\team3.jpg" alt="John" style="width:100%">
+                <div class="container">
+                    <h2>Sitaraman</h2>
+                    <br>
+                    <p class="title">Designer</p>
+                    <p>I saw the need on the news and thought,</p>
+                    <p>“Why not?” I’m a spontaneous impulsive teenager!</p>
+                    <br>
+                    <p>Sitaraman@example.com</p>
+                    <p><button class="button">Contact</button></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include "blood/footerTemplate.html" %}
+</body>
+
+</html>
